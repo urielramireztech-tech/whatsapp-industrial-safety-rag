@@ -27,7 +27,7 @@ I designed a scalable Retrieval-Augmented Generation (RAG) architecture using n8
 🧠 **Technical Highlights & Decisions**
 
 *   **API Rate Limit Handling:** Initially, embedding a large number of chunks simultaneously caused Google API rate limits, resulting in `0 dimension` vector errors in PostgreSQL. I resolved this by grouping the embeddings into a `Batch Size` of 50 within the n8n PGVector node.
-*   **Zero-Hallucination Citations:** LLMs inherently try to summarize or paraphrase document titles in RAG pipelines. I engineered a strict XML-style prompt structure (`<REGLA_CRITICA_DE_CITACION>`) and removed intermediate LLM summarization nodes to force the Agent to extract and cite the exact file names from the vector metadata.
+*   **Zero-Hallucination Citations:** LLMs inherently try to summarize or paraphrase document titles in RAG pipelines. I engineered a strict XML-style prompt structure and removed intermediate LLM summarization nodes to force the Agent to extract and cite the exact file names from the vector metadata.
 *   **Secure Form-Based Escalation:** Instead of relying on raw HTTP Webhooks for expert validation, I utilized n8n's native Wait node in `On Form Submitted` mode. This provides safety supervisors with a clean UI to read the operator's query and type their response directly from their mobile devices, maintaining workflow cryptographic security.
 
 ✅ **Business Impact**
