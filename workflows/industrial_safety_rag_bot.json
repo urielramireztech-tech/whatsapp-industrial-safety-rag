@@ -1,0 +1,1880 @@
+{
+  "name": "WhatsApp - Bot Seguridad Industrial",
+  "nodes": [
+    {
+      "parameters": {
+        "updates": [
+          "messages"
+        ],
+        "options": {}
+      },
+      "id": "ce178533-6d9c-4950-bcd7-7188786cdcd2",
+      "name": "WhatsApp Trigger",
+      "type": "n8n-nodes-base.whatsAppTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        784
+      ],
+      "webhookId": "b299e451-d7a2-4deb-9589-6f6175e63db1",
+      "credentials": {
+        "whatsAppTriggerApi": {
+          "id": "YOUR_ID",
+          "name": "YOUR_COUNT"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 1
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.messages }}",
+                    "rightValue": "",
+                    "operator": {
+                      "type": "array",
+                      "operation": "notExists",
+                      "singleValue": true
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Sin messages (status/otros)"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 1
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.messages[0].text.body }}",
+                    "rightValue": "",
+                    "operator": {
+                      "type": "string",
+                      "operation": "exists",
+                      "singleValue": true
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Texto"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 1
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.messages[0].image }}",
+                    "rightValue": "",
+                    "operator": {
+                      "type": "object",
+                      "operation": "exists",
+                      "singleValue": true
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Imagen"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 1
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.messages[0].audio }}",
+                    "rightValue": "",
+                    "operator": {
+                      "type": "object",
+                      "operation": "exists",
+                      "singleValue": true
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Audio"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 1
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.messages[0].video }}",
+                    "rightValue": "",
+                    "operator": {
+                      "type": "object",
+                      "operation": "exists",
+                      "singleValue": true
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Video"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 1
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.messages[0].document }}",
+                    "rightValue": "",
+                    "operator": {
+                      "type": "object",
+                      "operation": "exists",
+                      "singleValue": true
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Documento"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 1
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.messages[0].location }}",
+                    "rightValue": "",
+                    "operator": {
+                      "type": "object",
+                      "operation": "exists",
+                      "singleValue": true
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Ubicación"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 1
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.messages[0].contacts }}",
+                    "rightValue": "",
+                    "operator": {
+                      "type": "array",
+                      "operation": "exists",
+                      "singleValue": true
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Contactos"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 1
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.messages[0].sticker }}",
+                    "rightValue": "",
+                    "operator": {
+                      "type": "object",
+                      "operation": "exists",
+                      "singleValue": true
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Sticker"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 1
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.messages[0].reaction }}",
+                    "rightValue": "",
+                    "operator": {
+                      "type": "object",
+                      "operation": "exists",
+                      "singleValue": true
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Reacción"
+            }
+          ]
+        },
+        "options": {
+          "fallbackOutput": "extra",
+          "renameFallbackOutput": "Otro mensaje"
+        }
+      },
+      "id": "1151346d-b28e-44c3-aa95-6b39c0e3dd20",
+      "name": "¿Qué tipo de mensaje es?",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.4,
+      "position": [
+        224,
+        768
+      ]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "user-prompt",
+              "name": "userPrompt",
+              "value": "={{ $json.messages[0].text.body }}",
+              "type": "string"
+            },
+            {
+              "id": "msg-type",
+              "name": "type",
+              "value": "text-message",
+              "type": "string"
+            },
+            {
+              "id": "msg-ai",
+              "name": "ai",
+              "value": "",
+              "type": "string"
+            },
+            {
+              "id": "msg-wa-id",
+              "name": "wa_id",
+              "value": "={{ $json.contacts[0].wa_id }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "931319a0-f0e6-47fa-b148-2200f79128b4",
+      "name": "Extraer datos del texto",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.5,
+      "position": [
+        1376,
+        304
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "return {\n  userPrompt: $input.first().json.userPrompt,\n  type: $input.first().json.type,\n  ai: $input.first().json.ai,\n  wa_id: $input.first().json.wa_id\n}"
+      },
+      "id": "381731f3-ed00-40fa-bacb-03313f64786f",
+      "name": "Unir datos del mensaje",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1584,
+        304
+      ]
+    },
+    {
+      "parameters": {
+        "resource": "media",
+        "operation": "mediaUrlGet",
+        "mediaGetId": "={{ $json.messages[0].image.id }}"
+      },
+      "id": "7eeed12d-7d69-4c24-b8db-25c0078b65cb",
+      "name": "Obtener URL de la imagen",
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1.1,
+      "position": [
+        832,
+        688
+      ],
+      "webhookId": "8b569eca-4270-4db0-a66a-deeee0051626",
+      "credentials": {
+        "whatsAppApi": {
+          "id": "YOUR_ID",
+          "name": "YOUR_COUNT"
+        }
+      },
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "resource": "image",
+        "operation": "analyze",
+        "modelId": {
+          "__rl": true,
+          "value": "models/gemini-flash-lite-latest",
+          "mode": "list",
+          "cachedResultName": "models/gemini-flash-lite-latest"
+        },
+        "text": "Analiza esta imagen de un entorno industrial. Describe la actividad que se está realizando, los equipos involucrados y los posibles riesgos visibles",
+        "inputType": "binary",
+        "options": {}
+      },
+      "id": "c76b51d5-537b-4253-8c04-6a5425b2ab3b",
+      "name": "Analizar imagen con Vision",
+      "type": "@n8n/n8n-nodes-langchain.googleGemini",
+      "typeVersion": 1.2,
+      "position": [
+        1200,
+        672
+      ],
+      "retryOnFail": true,
+      "maxTries": 3,
+      "credentials": {
+        "googlePalmApi": {
+          "id": "YOUR_ID",
+          "name": "YOUR_COUNT"
+        }
+      },
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "img-prompt",
+              "name": "userPrompt",
+              "value": "={{ $('WhatsApp Trigger').item.json.messages[0].image.caption || 'Analiza la imagen de la planta' }}",
+              "type": "string"
+            },
+            {
+              "id": "img-type",
+              "name": "type",
+              "value": "text-message",
+              "type": "string"
+            },
+            {
+              "id": "img-ai",
+              "name": "ai",
+              "value": "={{ $json.content.parts[0].text }}",
+              "type": "string"
+            },
+            {
+              "id": "img-wa-id",
+              "name": "wa_id",
+              "value": "={{ $('WhatsApp Trigger').item.json.contacts[0].wa_id }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "6140d042-569d-4b45-bf4e-7c4f7b4b0c6e",
+      "name": "Extraer descripción de la imagen",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.5,
+      "position": [
+        1408,
+        656
+      ]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "err-msg",
+              "name": "mensaje",
+              "value": "Lo siento, hubo un error procesando tu mensaje. Por favor intenta nuevamente.",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "033e0fca-1428-4d91-b738-ede87ddcc53b",
+      "name": "Capturar error",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.5,
+      "position": [
+        2752,
+        1264
+      ]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "ns-msg",
+              "name": "mensaje",
+              "value": "Solo puedo procesar mensajes de texto o fotografías. Por favor intenta nuevamente.",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "517dcaad-1bb7-4fd2-8e97-d9933d9bc2b8",
+      "name": "Mensaje no soportado",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.5,
+      "position": [
+        928,
+        1168
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "send",
+        "phoneNumberId": "1408565955654854",
+        "recipientPhoneNumber": "={{ $('WhatsApp Trigger').item.json.messages[0].from.replace(/^521/, '52') }}",
+        "textBody": "={{ $json.mensaje }}",
+        "additionalFields": {}
+      },
+      "id": "6f274519-4279-4387-8664-725179506dd4",
+      "name": "Avisar mensaje no soportado",
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1.1,
+      "position": [
+        1152,
+        1168
+      ],
+      "webhookId": "564154e6-93d8-406b-9d82-a53522f9bec7",
+      "credentials": {
+        "whatsAppApi": {
+          "id": "YOUR_ID",
+          "name": "YOUR_COUNT"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.userPrompt }}",
+        "options": {
+          "systemMessage": "=Eres un Asistente Experto en Seguridad Industrial y Normativas de Planta. Tu objetivo es proteger la integridad del personal.\n\n<REGLA_DE_BUSQUEDA_OBLIGATORIA>\nESTÁS OBLIGADO a utilizar SIEMPRE tu herramienta de búsqueda de normativas (\"Responder con normativas\") para buscar la respuesta a la consulta del usuario ANTES de contestar. NUNCA respondas desde tu conocimiento general. Incluso si la pregunta contiene términos que no reconoces (como LOTOTO o variaciones), DEBES hacer la búsqueda en los documentos.\n</REGLA_DE_BUSQUEDA_OBLIGATORIA>\n\nBasándote ESTRICTAMENTE en el contexto de los manuales proporcionados recuperados por tu herramienta, responde a las dudas del usuario, evalúa los riesgos y proporciona medidas preventivas paso a paso. Sé claro, directo y usa formato de viñetas.\n\n<REGLAS_DE_FORMATO_Y_CITACION>\n1. El cuerpo de tu respuesta DEBE ser completamente limpio. No coloques corchetes, citas, ni referencias al final de cada viñeta o párrafo.\n2. Todo el contexto que recibes comienza con una etiqueta estructurada así: [Documento: TITULO_ORIGINAL].\n3. Al final de tu mensaje, debes hacer una lista de los documentos que usaste. Tienes ESTRICTAMENTE PROHIBIDO resumir o modificar el TITULO_ORIGINAL. DEBES hacer un \"copy-paste\" exacto de la cadena completa (ej. \"EPSHESEG011 Trabajos de izaje 003.docx\").\n</REGLAS_DE_FORMATO_Y_CITACION>\n\nSigue exactamente esta estructura final:\n[Tus medidas preventivas en viñetas...]\n\n📚 Documentos de referencia consultados:\n- [TITULO_ORIGINAL_COPIADO_EXACTAMENTE_1]\n- [TITULO_ORIGINAL_COPIADO_EXACTAMENTE_2]\n\nREGLA DE ESCALAMIENTO:\nSi, DESPUÉS de usar tu herramienta de búsqueda, la información solicitada no se encuentra explícitamente en el contexto, NO intentes deducirla. Responde ÚNICAMENTE con la frase exacta: NO_DISPONIBLE_EN_MANUALES\n\n## Imagen analizada por IA (si aplica)\n{{ $json.ai }}",
+          "maxIterations": 5
+        }
+      },
+      "id": "73073948-54cd-4f7f-a396-c8ee6ebd8cad",
+      "name": "Asistente Seguridad Industrial",
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3.1,
+      "position": [
+        1904,
+        304
+      ],
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-3.5-flash-lite",
+        "options": {}
+      },
+      "id": "7a23356d-5dd6-467a-8c24-70370b6ff0e6",
+      "name": "Google Gemini Chat Model",
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1.1,
+      "position": [
+        1760,
+        544
+      ],
+      "credentials": {
+        "googlePalmApi": {
+          "id": "YOUR_ID",
+          "name": "YOUR_COUNT"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "{{ $('WhatsApp Trigger').first().json.contacts[0].wa_id }}",
+        "contextWindowLength": 10
+      },
+      "id": "2dab0581-268f-4dd3-b373-dec45c56e1f3",
+      "name": "Simple Memory",
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.4,
+      "position": [
+        1856,
+        544
+      ]
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-embedding-2"
+      },
+      "id": "29cea414-6c81-411f-bd9c-78db55e1e8c9",
+      "name": "Embeddings Google Gemini",
+      "type": "@n8n/n8n-nodes-langchain.embeddingsGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        2128,
+        768
+      ],
+      "credentials": {
+        "googlePalmApi": {
+          "id": "YOUR_ID",
+          "name": "YOUR_COUNT"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 1
+          },
+          "conditions": [
+            {
+              "leftValue": "={{ $json.output }}",
+              "rightValue": "NO_DISPONIBLE_EN_MANUALES",
+              "operator": {
+                "type": "string",
+                "operation": "contains"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "4137051d-c565-4547-b51c-833f5e41e6cb",
+      "name": "¿Requiere validación de experto?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        2288,
+        288
+      ]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "esc-msg",
+              "name": "mensaje",
+              "value": "Tu consulta requiere validación de un experto del departamento de seguridad ambiental o industrial. En cuanto un experto valide el tema, recibirás la respuesta en este chat.",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "9012af93-1264-44ab-89e5-d97dd60c718e",
+      "name": "Preparar aviso de escalamiento",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.5,
+      "position": [
+        2576,
+        272
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "send",
+        "phoneNumberId": "1408565955654854",
+        "recipientPhoneNumber": "={{ $('WhatsApp Trigger').item.json.messages[0].from.replace(/^521/, '52') }}",
+        "textBody": "={{ $json.mensaje }}",
+        "additionalFields": {}
+      },
+      "id": "f928b105-d527-4d8a-843a-b6e7e6d19e54",
+      "name": "Avisar escalamiento al usuario",
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1.1,
+      "position": [
+        2800,
+        272
+      ],
+      "webhookId": "ec1c62a5-fb35-46b9-bdf8-9f91b781e10a",
+      "credentials": {
+        "whatsAppApi": {
+          "id": "YOUR_ID",
+          "name": "YOUR_COUNT"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "dataTableId": {
+          "__rl": true,
+          "mode": "id",
+          "value": "zjVxnhNkmooX1GJ3",
+          "cachedResultName": "Consultas Seguridad Pendientes"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "pregunta": "={{ $('Unir datos del mensaje').item.json.userPrompt }}",
+            "descripcionImagen": "={{ $('Unir datos del mensaje').item.json.ai }}",
+            "numeroUsuario": "={{ $('WhatsApp Trigger').item.json.messages[0].from }}",
+            "fecha": "={{ $now.toISO() }}",
+            "estado": "pendiente",
+            "urlReanudacion": "={{ $execution.resumeFormUrl }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "pregunta",
+              "displayName": "pregunta",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "descripcionImagen",
+              "displayName": "descripcionImagen",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "numeroUsuario",
+              "displayName": "numeroUsuario",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "fecha",
+              "displayName": "fecha",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "dateTime",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "estado",
+              "displayName": "estado",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "urlReanudacion",
+              "displayName": "urlReanudacion",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "id": "2ca704e7-b77e-4de4-a3ac-9138a93b69f4",
+      "name": "Registrar consulta pendiente",
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1.1,
+      "position": [
+        3024,
+        272
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "send",
+        "phoneNumberId": "YOUR_PHONE_ID",
+        "recipientPhoneNumber": "YOUR_PHONE",
+        "textBody": "=⚠️ *Consulta de seguridad industrial que requiere validación de un experto*\n\n*Pregunta del trabajador:* {{ $('Unir datos del mensaje').item.json.userPrompt }}\n*Descripción de la imagen:* {{ $('Unir datos del mensaje').item.json.ai || 'Sin imagen adjunta' }}\n*Número del trabajador:* {{ $('WhatsApp Trigger').item.json.messages[0].from }}\n\nPara responder y que el bot conteste automáticamente al trabajador, abre el siguiente enlace y escribe las indicaciones en el formulario:\n{{ $execution.resumeFormUrl }}",
+        "additionalFields": {}
+      },
+      "id": "659c49c3-e513-457b-93c2-e03793f7c8cb",
+      "name": "Notificar al experto",
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1.1,
+      "position": [
+        3248,
+        272
+      ],
+      "webhookId": "110d64cb-aab9-44bc-98df-b17b7ca739e9",
+      "credentials": {
+        "whatsAppApi": {
+          "id": "YOUR_ID",
+          "name": "YOUR_COUNT"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resume": "form",
+        "formTitle": "Validación de Seguridad Industrial",
+        "formDescription": "=Pregunta del trabajador: {{ $('Unir datos del mensaje').item.json.userPrompt }}\nDescripción de la imagen: {{ $('Unir datos del mensaje').item.json.ai || 'Sin imagen' }}",
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "respuesta",
+              "fieldType": "textarea",
+              "placeholder": "Escribe aquí las indicaciones de seguridad y medidas preventivas para el trabajador...",
+              "requiredField": true
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "73a60e6b-9e8b-4c0b-b231-17566b504bbf",
+      "name": "Esperar respuesta del experto",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        3472,
+        272
+      ],
+      "webhookId": "8528f617-c12f-4dc1-8555-926c242a3337"
+    },
+    {
+      "parameters": {
+        "operation": "send",
+        "phoneNumberId": "YOUR_PHONE_ID",
+        "recipientPhoneNumber": "={{ $('WhatsApp Trigger').item.json.messages[0].from.replace(/^521/, '52') }}",
+        "textBody": "=👷‍♂️ *Respuesta validada por Seguridad Industrial*\n*Respecto a tu consulta:* \"{{ $('Unir datos del mensaje').item.json.userPrompt }}\"\n\n*Indicaciones:*\n{{ $json.respuesta }}",
+        "additionalFields": {}
+      },
+      "id": "0b70d37a-684d-4c4e-81e6-98877d5cb369",
+      "name": "Enviar respuesta del experto",
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1.1,
+      "position": [
+        3696,
+        272
+      ],
+      "webhookId": "a4a22e24-5b45-485d-b827-1cddbe2716f9",
+      "credentials": {
+        "whatsAppApi": {
+          "id": "YOUR_ID",
+          "name": "YOUR_COUNT"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "send",
+        "phoneNumberId": "YOUR_PHONE_ID",
+        "recipientPhoneNumber": "={{ $('WhatsApp Trigger').item.json.messages[0].from.replace(/^521/, '52') }}",
+        "textBody": "={{ $json.output }}",
+        "additionalFields": {}
+      },
+      "id": "35a514b3-34ec-4294-bccc-3a2a6aba38da",
+      "name": "Enviar respuesta",
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1.1,
+      "position": [
+        2592,
+        656
+      ],
+      "webhookId": "80685cfb-37d8-41b8-a189-3f785f5cdc2e",
+      "credentials": {
+        "whatsAppApi": {
+          "id": "YOUR_ID",
+          "name": "YOUR_COUNT"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "send",
+        "phoneNumberId": "YOUR_PHONE_ID",
+        "recipientPhoneNumber": "={{ $('WhatsApp Trigger').item.json.messages[0].from.replace(/^521/, '52') }}",
+        "textBody": "={{ $json.mensaje }}",
+        "additionalFields": {}
+      },
+      "id": "7eb2ef73-fb53-477a-be1b-616fbcbe4b03",
+      "name": "Enviar mensaje de error",
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1.1,
+      "position": [
+        3056,
+        1264
+      ],
+      "webhookId": "e8144a4b-d3a1-4921-b441-81903c9268d8",
+      "credentials": {
+        "whatsAppApi": {
+          "id": "YOUR_ID",
+          "name": "YOUR_COUNT"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {}
+          ]
+        }
+      },
+      "id": "72d83b9d-0fab-4713-80be-16957e708571",
+      "name": "Schedule Trigger",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.3,
+      "position": [
+        0,
+        1808
+      ]
+    },
+    {
+      "parameters": {
+        "resource": "fileFolder",
+        "returnAll": true,
+        "filter": {
+          "folderId": {
+            "__rl": true,
+            "mode": "id",
+            "value": "17ZNc0xkkIGLVifpIZ_kHQfwu2Ldyc65A",
+            "cachedResultName": "Procedimientos de seguridad"
+          },
+          "whatToSearch": "files",
+          "includeTrashed": false
+        },
+        "options": {
+          "fields": [
+            "*"
+          ]
+        }
+      },
+      "id": "0187e5ea-a10d-4136-a06d-2e7480748621",
+      "name": "Buscar normativas en Drive",
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        224,
+        1808
+      ],
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "YOUR_ID",
+          "name": "YOUR_COUNT"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $json.mimeType }}",
+              "value2": "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+            }
+          ]
+        }
+      },
+      "id": "6ebcc9ee-3039-41ca-a159-63eb536faa63",
+      "name": "Solo manuales .docx",
+      "type": "n8n-nodes-base.filter",
+      "typeVersion": 1,
+      "position": [
+        448,
+        1808
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "WITH nuevos AS (\n  SELECT '{{ $json.id }}' AS id, '{{ $json.md5Checksum }}' AS md5Checksum, '{{ $json.mimeType }}' AS mimeType, '{{ $json.modifiedTime }}'::timestamptz AS modifiedTime, '{{ $json.name }}' AS name\n  WHERE NOT EXISTS (\n    SELECT 1 FROM public.ingested_files\n    WHERE file_id = '{{ $json.id }}' AND md5_checksum = '{{ $json.md5Checksum }}'\n  )\n),\ndel AS (\n  DELETE FROM n8n_vectors WHERE file_id IN (SELECT id FROM nuevos) RETURNING 1\n),\nins AS (\n  INSERT INTO public.ingested_files (file_id, name, mime_type, md5_checksum, modified_time)\n  SELECT id, name, mimeType, md5Checksum, modifiedTime FROM nuevos\n  RETURNING 1\n)\nSELECT id, md5Checksum, mimeType, modifiedTime, name FROM nuevos",
+        "options": {}
+      },
+      "id": "8cbc1f2a-e442-4ad1-b845-5fb5023ec615",
+      "name": "Verificar, limpiar y registrar",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.7,
+      "position": [
+        672,
+        1808
+      ],
+      "credentials": {
+        "postgres": {
+          "id": "YOUR_ID",
+          "name": "YOUR_COUNT"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "download",
+        "fileId": {
+          "__rl": true,
+          "mode": "id",
+          "value": "={{ $json.id }}"
+        },
+        "options": {}
+      },
+      "id": "72e80702-d0ff-4096-a088-2285149a8111",
+      "name": "Descargar normativa",
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        896,
+        1808
+      ],
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "YOUR_ID",
+          "name": "YOUR_COUNT"
+        }
+      },
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "fail-msg",
+              "name": "mensaje",
+              "value": "Error durante la ingesta de la normativa. Revisa la pestaña de ejecuciones para mas detalles.",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "1fef303b-7b7e-487d-a36c-94b41c6d3a53",
+      "name": "Fallo en la ingesta",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.5,
+      "position": [
+        1184,
+        2016
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "insert",
+        "embeddingBatchSize": 1,
+        "options": {}
+      },
+      "id": "583c7f72-5fe3-496a-9774-7cd378da6f74",
+      "name": "Postgres PGVector Store",
+      "type": "@n8n/n8n-nodes-langchain.vectorStorePGVector",
+      "typeVersion": 1.3,
+      "position": [
+        1312,
+        1408
+      ],
+      "credentials": {
+        "postgres": {
+          "id": "YOUR_ID",
+          "name": "YOUR_COUNT"
+        }
+      },
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-embedding-2"
+      },
+      "id": "692d42d2-ad93-4892-be30-e8511564287d",
+      "name": "Embeddings Google Gemini Ingesta",
+      "type": "@n8n/n8n-nodes-langchain.embeddingsGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        1232,
+        1648
+      ],
+      "credentials": {
+        "googlePalmApi": {
+          "id": "YOUR_ID",
+          "name": "YOUR_COUNT"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "dataType": "binary",
+        "binaryMode": "specificField",
+        "loader": "docxLoader",
+        "textSplittingMode": "custom",
+        "options": {}
+      },
+      "id": "5d5fd66e-9cb5-4fea-aef5-b07514508ef3",
+      "name": "Default Data Loader",
+      "type": "@n8n/n8n-nodes-langchain.documentDefaultDataLoader",
+      "typeVersion": 1.1,
+      "position": [
+        1392,
+        1664
+      ]
+    },
+    {
+      "parameters": {
+        "chunkOverlap": 250,
+        "options": {}
+      },
+      "id": "8688c1be-64ea-48ac-8960-d770c58a782a",
+      "name": "Recursive Character Text Splitter",
+      "type": "@n8n/n8n-nodes-langchain.textSplitterRecursiveCharacterTextSplitter",
+      "typeVersion": 1,
+      "position": [
+        1392,
+        1824
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "UPDATE n8n_vectors\nSET file_id = '{{ $('Buscar normativas en Drive').item.json.id }}'\nWHERE metadata->'loc'->'lines' = '{{ $json.metadata.loc.lines.toJsonString() }}' and file_id is null",
+        "options": {}
+      },
+      "id": "a5f018bf-17eb-4f48-bfd4-03151436c93f",
+      "name": "Actualizar file_id en vectores",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.7,
+      "position": [
+        1792,
+        1536
+      ],
+      "credentials": {
+        "postgres": {
+          "id": "YOUR_ID",
+          "name": "YOUR_COUNT"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "id": "a9bc3d05-1c92-4396-8248-a1783cee1d67",
+      "name": "Fin error de ingesta",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        1472,
+        2016
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Mensaje entrante de WhatsApp\n\nRecibe los mensajes del número de la planta y clasifica el tipo de contenido.",
+        "height": 552,
+        "width": 556,
+        "color": 6
+      },
+      "id": "4c620045-6e56-42b2-8dd9-3c557444eb30",
+      "name": "Sticky Note f88b3fd1",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -64,
+        672
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Mensaje de texto\n\nNormaliza el cuerpo del mensaje en el campo userPrompt para el agente.",
+        "height": 344,
+        "width": 220,
+        "color": 6
+      },
+      "id": "a3259d8c-b450-4abe-ad07-edfd87a32993",
+      "name": "Sticky Nota: Mensaje de texto",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        1296,
+        160
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Mensaje con imagen - análisis Vision\n\nDescarga la fotografía de los servidores de WhatsApp y la describe con Gemini Vision, convirtiéndola en texto consultable por el RAG.",
+        "height": 296,
+        "width": 780,
+        "color": 6
+      },
+      "id": "f1ff85f4-c13a-45cc-a8de-e40a1bd00cc1",
+      "name": "Sticky Nota: Análisis Vision",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        800,
+        576
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Agente con RAG sobre normativas\n\nEl agente consulta la base vectorial (PGVector) alimentada con los manuales .docx de Google Drive.",
+        "height": 200,
+        "width": 300,
+        "color": 5
+      },
+      "id": "4ba3d10c-a519-457e-be14-5622ec1e501d",
+      "name": "Sticky Nota: Agente RAG",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        1888,
+        64
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Human in the loop\n\nCuando la respuesta no está en los manuales (marcador NO_DISPONIBLE_EN_MANUALES): se avisa al usuario, se registra la consulta en la tabla de datos, se notifica al experto (522721049865) y el flujo pausa esperando su respuesta.\n\n> El experto responde con un POST { \"respuesta\": \"...\" } a la URL de reanudación que recibe en la notificación.",
+        "height": 184,
+        "width": 1148,
+        "color": 4
+      },
+      "id": "55476a15-fac1-4d58-aa0a-0bb6cfc9ff46",
+      "name": "Sticky Nota: Human in the loop",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        2608,
+        -80
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Respuesta al usuario\n\nEnvía la respuesta del agente, o avisa cuando el tipo de mensaje no es soportado.",
+        "height": 296,
+        "width": 268,
+        "color": 6
+      },
+      "id": "b083881a-5608-4b91-b3fe-1ac75f8bc77a",
+      "name": "Sticky Nota: Respuesta al usuario",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        2528,
+        512
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Ingesta de normativas .docx desde Google Drive\n\nBusca en la carpeta \"Procedimientos de seguridad\" (16 archivos directos; 11 son manuales .docx - el filtro descarta .xlsx/.pdf/.msg). El nodo \"Verificar, limpiar y registrar\" hace en una sola query CTE la dedup por md5Checksum (devuelve 0 filas y detiene la cadena si ya fue ingerido), la limpieza de vectores anteriores del archivo y el registro en ingested_files. Los manuales nuevos o modificados se descargan y re-embeden en PGVector.\n\n> Se dispara con el schedule (cada dia a medianoche). Para forzar una ingesta, ejecuta este workflow manualmente desde el boton \"Execute Workflow\".",
+        "height": 328,
+        "width": 572,
+        "color": 5
+      },
+      "id": "659ac0fb-7a8b-4c29-8e4e-d53bb12a5288",
+      "name": "Sticky Nota: Ingesta de normativas",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -464,
+        1360
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Manejo de errores - chat\n\nSi falla la descarga de la imagen, el análisis Vision o el agente, se responde al usuario con un mensaje amigable para reintentar.",
+        "height": 120,
+        "width": 780,
+        "color": 2
+      },
+      "id": "02a391b1-8975-48cd-be78-6db2d1ab06e8",
+      "name": "Sticky Nota: Errores del chat",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        752,
+        1136
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Errores de ingesta\n\nSi falla la descarga de la normativa o la lectura del .docx, el error se registra aquí sin detener el resto. Detalles en la pestaña de ejecuciones.",
+        "height": 200,
+        "width": 300,
+        "color": 2
+      },
+      "id": "09f5ef09-4965-4e06-b91c-66dd7f1ed5e4",
+      "name": "Sticky Nota: Errores de ingesta",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        1312,
+        2288
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "a76ae645-881c-47bf-9743-957729d5a696",
+      "name": "Ignorar status",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        752,
+        272
+      ]
+    },
+    {
+      "parameters": {
+        "url": "={{ $json.url }}",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpBearerAuth",
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "file"
+            }
+          }
+        }
+      },
+      "id": "7272a7a9-55b5-4165-9219-aff93b2886d1",
+      "name": "Descargar imagen",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        1024,
+        672
+      ],
+      "credentials": {
+        "httpBearerAuth": {
+          "id": "YOUR_ID",
+          "name": "YOUR_COUNT"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// Recibe batch de items con binary.data y json.name\n// Procesa todos los items del batch\nconst items = $input.all();\nreturn items.map(item => {\n  if (item.binary?.data) {\n    item.binary.data.fileName = item.json.name;\n    item.binary.data.metadata = item.binary.data.metadata || {};\n    item.binary.data.metadata.fileId = item.json.id;\n  }\n  return item;\n});"
+      },
+      "id": "61f632f8-59d5-4f02-9ac2-80d23464de79",
+      "name": "Enriquecer metadata chunk",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1120,
+        1408
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "retrieve-as-tool",
+        "toolDescription": "=Obligatorio usar esta herramienta para buscar CUALQUIER consulta del usuario sobre seguridad, normativas, LOTO, LOTOTO, bloqueos, izajes, EPP, riesgos o procedimientos de planta. Ingresa la pregunta completa del usuario o las palabras clave más relevantes.",
+        "includeDocumentMetadata": false,
+        "options": {}
+      },
+      "id": "69236831-e34a-46ee-9d52-767209add9b0",
+      "name": "Responder con normativas",
+      "type": "@n8n/n8n-nodes-langchain.vectorStorePGVector",
+      "typeVersion": 1.3,
+      "position": [
+        2016,
+        576
+      ],
+      "credentials": {
+        "postgres": {
+          "id": "YOUR_ID",
+          "name": "YOUR_COUNT"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "WhatsApp Trigger": {
+      "main": [
+        [
+          {
+            "node": "¿Qué tipo de mensaje es?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extraer datos del texto": {
+      "main": [
+        [
+          {
+            "node": "Unir datos del mensaje",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Unir datos del mensaje": {
+      "main": [
+        [
+          {
+            "node": "Asistente Seguridad Industrial",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Obtener URL de la imagen": {
+      "main": [
+        [
+          {
+            "node": "Descargar imagen",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Capturar error",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Analizar imagen con Vision": {
+      "main": [
+        [
+          {
+            "node": "Extraer descripción de la imagen",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Capturar error",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extraer descripción de la imagen": {
+      "main": [
+        [
+          {
+            "node": "Unir datos del mensaje",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Capturar error": {
+      "main": [
+        [
+          {
+            "node": "Enviar mensaje de error",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Mensaje no soportado": {
+      "main": [
+        [
+          {
+            "node": "Avisar mensaje no soportado",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Asistente Seguridad Industrial": {
+      "main": [
+        [
+          {
+            "node": "¿Requiere validación de experto?",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Capturar error",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Asistente Seguridad Industrial",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simple Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "Asistente Seguridad Industrial",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Embeddings Google Gemini": {
+      "ai_embedding": [
+        [
+          {
+            "node": "Responder con normativas",
+            "type": "ai_embedding",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "¿Requiere validación de experto?": {
+      "main": [
+        [
+          {
+            "node": "Preparar aviso de escalamiento",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Enviar respuesta",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Preparar aviso de escalamiento": {
+      "main": [
+        [
+          {
+            "node": "Avisar escalamiento al usuario",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Avisar escalamiento al usuario": {
+      "main": [
+        [
+          {
+            "node": "Registrar consulta pendiente",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Registrar consulta pendiente": {
+      "main": [
+        [
+          {
+            "node": "Notificar al experto",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Notificar al experto": {
+      "main": [
+        [
+          {
+            "node": "Esperar respuesta del experto",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Esperar respuesta del experto": {
+      "main": [
+        [
+          {
+            "node": "Enviar respuesta del experto",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "Buscar normativas en Drive",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Buscar normativas en Drive": {
+      "main": [
+        [
+          {
+            "node": "Solo manuales .docx",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Solo manuales .docx": {
+      "main": [
+        [
+          {
+            "node": "Verificar, limpiar y registrar",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Verificar, limpiar y registrar": {
+      "main": [
+        [
+          {
+            "node": "Descargar normativa",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Descargar normativa": {
+      "main": [
+        [
+          {
+            "node": "Enriquecer metadata chunk",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Fallo en la ingesta",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Fallo en la ingesta": {
+      "main": [
+        [
+          {
+            "node": "Fin error de ingesta",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Postgres PGVector Store": {
+      "main": [
+        [
+          {
+            "node": "Actualizar file_id en vectores",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Fallo en la ingesta",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Embeddings Google Gemini Ingesta": {
+      "ai_embedding": [
+        [
+          {
+            "node": "Postgres PGVector Store",
+            "type": "ai_embedding",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Default Data Loader": {
+      "ai_document": [
+        [
+          {
+            "node": "Postgres PGVector Store",
+            "type": "ai_document",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Recursive Character Text Splitter": {
+      "ai_textSplitter": [
+        [
+          {
+            "node": "Default Data Loader",
+            "type": "ai_textSplitter",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "¿Qué tipo de mensaje es?": {
+      "main": [
+        [
+          {
+            "node": "Ignorar status",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Extraer datos del texto",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Obtener URL de la imagen",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Mensaje no soportado",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Mensaje no soportado",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Mensaje no soportado",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Mensaje no soportado",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Mensaje no soportado",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Mensaje no soportado",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Mensaje no soportado",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Descargar imagen": {
+      "main": [
+        [
+          {
+            "node": "Analizar imagen con Vision",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Capturar error",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Enriquecer metadata chunk": {
+      "main": [
+        [
+          {
+            "node": "Postgres PGVector Store",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Responder con normativas": {
+      "ai_vectorStore": [
+        []
+      ],
+      "ai_tool": [
+        [
+          {
+            "node": "Asistente Seguridad Industrial",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "availableInMCP": true
+  },
+  "versionId": "52f5f622-14d0-4a2e-9b2a-e0910c449edb",
+  "meta": {
+    "aiBuilderAssisted": true,
+    "builderVariant": "mcp",
+    "templateCredsSetupCompleted": true,
+    "instanceId": "a9da5318afef813a9d20f718fdcebd2cbd81ea5efa619b9db54a884171030e41"
+  },
+  "nodeGroups": [
+    {
+      "id": "445c0a25-2731-4315-98f4-cc3f9d5e6dde",
+      "name": "Ingesta de normativas",
+      "nodeIds": [
+        "0187e5ea-a10d-4136-a06d-2e7480748621",
+        "6ebcc9ee-3039-41ca-a159-63eb536faa63",
+        "8cbc1f2a-e442-4ad1-b845-5fb5023ec615",
+        "72e80702-d0ff-4096-a088-2285149a8111",
+        "1fef303b-7b7e-487d-a36c-94b41c6d3a53",
+        "583c7f72-5fe3-496a-9774-7cd378da6f74",
+        "692d42d2-ad93-4892-be30-e8511564287d",
+        "5d5fd66e-9cb5-4fea-aef5-b07514508ef3",
+        "8688c1be-64ea-48ac-8960-d770c58a782a",
+        "a5f018bf-17eb-4f48-bfd4-03151436c93f",
+        "a9bc3d05-1c92-4396-8248-a1783cee1d67",
+        "61f632f8-59d5-4f02-9ac2-80d23464de79"
+      ]
+    },
+    {
+      "id": "20c5152b-4fb9-4b17-8895-7a4b025e7b19",
+      "name": "Human in the loop",
+      "nodeIds": [
+        "9012af93-1264-44ab-89e5-d97dd60c718e",
+        "f928b105-d527-4d8a-843a-b6e7e6d19e54",
+        "2ca704e7-b77e-4de4-a3ac-9138a93b69f4",
+        "659c49c3-e513-457b-93c2-e03793f7c8cb",
+        "73a60e6b-9e8b-4c0b-b231-17566b504bbf",
+        "0b70d37a-684d-4c4e-81e6-98877d5cb369"
+      ]
+    },
+    {
+      "id": "f88941ed-fe18-4aa2-be8e-a0e107badc81",
+      "name": "Aviso de mensaje no soportado",
+      "nodeIds": [
+        "517dcaad-1bb7-4fd2-8e97-d9933d9bc2b8",
+        "6f274519-4279-4387-8664-725179506dd4"
+      ]
+    }
+  ],
+  "id": "w3V5QCy9SAs2DD3J",
+  "tags": [
+    {
+      "updatedAt": "2026-09-15T02:59:31.658Z",
+      "createdAt": "2026-09-15T02:59:31.658Z",
+      "id": "0Z90pQj6VzgqMnJj",
+      "name": "security"
+    },
+    {
+      "updatedAt": "2026-09-16T05:44:10.018Z",
+      "createdAt": "2026-09-16T05:44:10.018Z",
+      "id": "PWOT66Tz83SvlmxS",
+      "name": "RAG´s"
+    }
+  ]
+}
